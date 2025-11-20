@@ -4,36 +4,34 @@
 
 char* checkBrackets(char* s)
 {
-	char bracketOpen = '(';
-	char bracketClose = ')';
-	int len = strlen(s);
+	int countOpen = 0;
+	int countClose = 0;
 	
-	for (int i = 0; i <= len-2; i++)
+	while ( *s != '.')
 	{
-		if (s[i] == bracketOpen)
+		switch(*s)
 		{
-			if ( s[i+1] == bracketClose)
-				i++;
-			else if (s[len-2-i] != bracketClose)
-				return "NO";
+			case '(':
+				countOpen++;
+				break;
+			case ')':
+				countClose++;
 		}
-		else
-		{
-			if (i==0)
-				return "NO";
+		if (countOpen<countClose)
+			return "NO";
 			
-			else if (s[len-2-i] != bracketOpen)
-				return "NO";
-			
-		}
+		s++;
 	}
 	
-	return "YES";
+	if (countOpen == countClose)
+		return "YES";
+	else
+		return "NO";
 }
 
 int main()
 {
-	char s[100];
+	char s[1500];
 	scanf("%s", s);
     printf("%s", checkBrackets(s));
     return 0;
