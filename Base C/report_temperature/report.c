@@ -7,5 +7,7 @@ int main (int argc, char* argv[])
     InitSensorData(&sensor_data);
 
     checkArguments(argc, argv, sensor_data);
+
+    free(sensor_data.info);
 }
 
